@@ -14,6 +14,7 @@
   font-size: calc(10px + 2vmin);
   text-align: center;
   display: flex;
+  overflow: hidden;
   justify-content: center;
 }
 .container, #homepage {
@@ -203,8 +204,7 @@ nav li:hover::after {
 }
 
 /* Controls */
-
-a.next {
+div.next {
   right: 0;
   position: fixed;
   top: 15%;
