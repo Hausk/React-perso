@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import '../CSS/Cv.css';
+import React, { Component } from 'react';
 
 export default class Cv extends Component {
     render() {

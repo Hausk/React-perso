@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import '../CSS/index.css';
-import '../CSS/App.css';
-import './Test.js';
-import { Link, Switch } from "react-router-dom";
+import '../CSS/Home.css';
+import { Link } from "react-router-dom";
 
 export default class Home extends Component {
 
@@ -10,7 +9,11 @@ export default class Home extends Component {
     
     return (
       <div className="home">
-      
+        <div className="ribbon_maint">
+          <div className="ribbon_maint-container">
+            <h1>Site en cours de maintenance</h1>
+          </div>
+        </div>
         <div className="page_controllers">
           <nav>
             <ul>
@@ -29,6 +32,14 @@ export default class Home extends Component {
             <Link to="/portfolio" activeClassName="active">
               <div title="Vers mon portfolio" className="next">
                 <span>Portfolio</span>
+                <em></em>
+              </div>
+            </Link>
+          </div>
+          <div className="bottom_controller">
+            <Link to="/about-me" activeClassName="active">
+              <div title="Vers ma page de présentation" className="bottom">
+                <span>About-me</span>
                 <em></em>
               </div>
             </Link>

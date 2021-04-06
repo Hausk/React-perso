@@ -1,3 +1,11 @@
+:root {
+  --lightgrey: #484f58;
+  --emerald: ;
+  --linkedin: #0a66c2;
+  --red: ;
+  --blue: #61dafb;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -35,22 +43,241 @@ code {
   background-color: #282c34;
   min-height: 100vh;
   color: white;
+  overflow: hidden;
 }
-.fade-appear,
 .fade-enter {
   opacity: 0;
   z-index: 1;
+  transform: translateY(-10px);
 }
 .fade-appear-active,
 .fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 250ms ease-in;
+opacity: 1;
+transform: translateY(0);
+transition: opacity 300ms linear 150ms, transform 400ms ease-out 150ms;
 }
 
 .fade-exit {
   opacity: 1;
+  transform: translateY(0);
+  display: none;
 }
 .fade-exit.fade-exit-active {
   opacity: 0;
-  transition: opacity 150ms linear;
+  transform: translateY(-10px);
+  display: none;
+  transition: display 50ms linear, opacity 150ms linear, transform 150ms ease-in;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: none;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #61dafb;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+/* Controls */
+div.next, div.prev{
+  right: 0;
+  position: fixed;
+  top: 15%;
+  width: 100px;
+  height: 70%;
+  z-index: 8000;
+}
+div.prev {
+  left: 0;
+  right: inherit;
+}
+.next em, .prev em {
+  display: block;
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  top: calc(50% - 18.5px);
+  left: calc(50% - 18px);
+  transition: transform .2s ease-out;
+}
+.prev em {
+  left: inherit;
+  right: calc(50% - 18px);
+}
+.next em::before, .prev em::before {
+  top: -50%;
+  transform: rotate(-45deg);
+}
+.prev em::before {
+  transform: rotate(45deg);
+}
+.next em::after, .prev em::after {
+  top: calc(-50% - 1px);
+  transform: rotate(-135deg);
+}
+.prev em::after {
+  transform: rotate(135deg);
+}
+
+.next:hover em::before, .prev:hover em::before {
+  transform: rotate(-25deg);
+  transition: .2s ease-in-out;
+}
+.prev:hover em::before {
+  transform: rotate(25deg);
+}
+.next:hover em::after {
+  transform: rotate(-155deg);
+  transition: .2s ease-in-out;
+}
+.prev:hover em::after{
+  transform: rotate(155deg);
+}
+
+.bottom, .top {
+  display: flex;
+  justify-content: center;
+  right: 15%;
+  left: 15%;
+  position: fixed;
+  bottom: 0;
+  width: 70%;
+  height: 100px;
+  z-index: 8000;
+}
+.top {
+  top: 0;
+  position: absolute;
+}
+.bottom em, .top em {
+  display: block;
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  right: calc(50%);
+  top: calc(50% - 18px);
+  transition: transform .2s ease-out;
+}
+.top em {
+  top: inherit;
+  bottom: calc(50% - 18px);
+}
+.bottom em::before {
+  right: -50%;
+  transform: rotate(-45deg);
+}
+.bottom em::after, .top em::after {
+  right: calc(-50% - 1px);
+  transform: rotate(45deg);
+}
+
+.top em::before {
+  transform: rotate(-135deg);
+}
+.top em::after {
+  transform: rotate(135deg);
+}
+
+.bottom:hover em::after {
+  transform: rotate(65deg);
+}
+.bottom:hover em::before {
+  transform: rotate(-65deg);
+}
+
+.top:hover em::before {
+  transform: rotate(-115deg);
+}
+.top:hover em::after {
+  transform: rotate(115deg);
+}
+
+.next em::after, .next em::before, .prev em::after, .prev em::before, .bottom em::after, .bottom em::before, .top em::before, .top em::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 2px;
+  background: white;
+  transform-origin: 50% 100% 0;
+  transition: transform .2s ease-out;
+}
+
+.next span,.prev span {
+  display: inline-block;
+  color: #FFF;
+  position: absolute;
+  top: calc(50% - 1em);
+  opacity: 0;
+  height: 30px;
+  padding-top: 0 10px;
+  width: 5em;
+  text-transform: lowercase;
+  font-size: calc(10px + 2vmin) !important;
+  line-height: 1.7em;
+}
+.next span {
+  right: calc(50% + 5px);
+  transform: translate3d(30px,0,0);
+  transition: .2s ease-in;
+}
+.prev span {
+  left: calc(50% + 5px);
+  transform: translate3d(-30px,0,0);
+  transition: .2 ease-in;
+}
+.bottom span, .top span {
+  display: inline-block;
+  color: #FFF;
+  position: absolute;
+  top: calc(50% - 1em);
+  opacity: 0;
+  height: 30px;
+  padding-top: 0 10px;
+  width: 5em;
+  text-transform: lowercase;
+  font-size: .85em;
+  line-height: 1.7em;
+  transform: translate3d(0, 30px, 0);
+  transition: .2 ease-in;
+}
+.top span {
+  top: inherit;
+  bottom: calc(50% - 1em);
+  transform: translate3d(0, 0px, 0);
+}
+.next:hover span, .prev:hover span {
+  opacity: 1;
+  bottom: calc(50% + 5px);
+  transform: translate3d(0,0,0);
+  transition-delay: 1.4s;
+  transition-property: opacity;
+  transition: .2s ease-in-out;
+}
+.bottom:hover span, .top:hover span {
+  opacity: 1;
+  transform: translate3d(0,-30px,0);
+  transition-delay: 2s;
+  transition-property: rotate;
+  transition: .2s ease-in;
+}
+.top:hover span {
+  transform: translate3d(0, 60px,0);
+}
+
+
+/* Provisoire */
+
+#error {
+  background: url(../IMG/404Error.jpg) no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
